@@ -2,6 +2,7 @@
 
 ## Starts a kube master using locally-compiled bins
 ## Leveragges kubeadm, and uses flannel as CNI
+## See https://medium.com/@rouge.j/development-setup-for-kubernetes-on-windows-388ca05b89e
 
 set -e
 

@@ -19,16 +19,19 @@ usage() {
   exit 1
 }
 
-_FLANNEL_VERSION='e4deb05e97ceb68d43df022fb76cd505a38a6973'
-_FLANNEL_MANIFEST_DOWNLOAD_URL="https://raw.githubusercontent.com/coreos/flannel/$_FLANNEL_VERSION/Documentation/kube-flannel.yml"
+# using a modified version for now until flannel catches up with versions 1.15/16
+# TODO: automatically detect the version and apply the right one...
+# _FLANNEL_VERSION='09ddc5006e18f15a0cb49314fa01729869d83527'
+# _FLANNEL_MANIFEST_DOWNLOAD_URL="https://raw.githubusercontent.com/coreos/flannel/$_FLANNEL_VERSION/Documentation/kube-flannel.yml"
+_FLANNEL_MANIFEST_DOWNLOAD_URL='https://raw.githubusercontent.com/wk8/easy-k8s-dev/master/kube-flannel.yml'
 # to regen:
-# curl $_FLANNEL_MANIFEST_DOWNLOAD_URL | sha256sum 
-_FLANNEL_MANIFEST_CHECKSUM='a82ee33314f6203991c0fd67c74d9587d9d1e20fe3661eb0744e7e8e31ec0b2d'
+# curl $_FLANNEL_MANIFEST_DOWNLOAD_URL | sha256sum
+_FLANNEL_MANIFEST_CHECKSUM='36a06eb89a2371fdc707bca5982ff247554c7e5353e09461b13d2bd288325ef3'
 
-_MS_SDN_VERSION='9006d26877a48007b9a4f5a8b1bc1e348b98af7b'
+_MS_SDN_VERSION='7254feb355992bad5ef5981d7c381f2488fd72e8'
 _MS_SDN_SELECTOR_PATCH_URL="https://raw.githubusercontent.com/Microsoft/SDN/$_MS_SDN_VERSION/Kubernetes/flannel/l2bridge/manifests/node-selector-patch.yml"
 # to regen:
-# curl $_MS_SDN_SELECTOR_PATCH_URL | sha256sum 
+# curl $_MS_SDN_SELECTOR_PATCH_URL | sha256sum
 _MS_SDN_SELECTOR_PATCH_CHECKSUM='6109fc8e06e7699a120cf0d46ff7fc2816bd0bc2a7ab1b88eb59b8e6dc695c63'
 
 main() {

@@ -95,7 +95,10 @@ main() {
   # now install flannel
   local FLANNEL_MANIFEST="$(_ensure_file_present "$_FLANNEL_MANIFEST_DOWNLOAD_URL" "$_FLANNEL_MANIFEST_CHECKSUM")"
   # we want flannel in host gateway node, for Windows workers
-  sed 's/"vxlan"/"host-gw"/g' "$FLANNEL_MANIFEST" | KUBECONFIG="$LOCAL_KUBECONFIG" "$KUBECTL_BIN" apply -f -
+  # and we also need to add this cniVersion line,
+  # see https://github.com/kubernetes/kubernetes/pull/80482
+  # and https://github.com/coreos/flannel-cni/issues/16
+  sed 's/"vxlan"/"host-gw"/g' "$FLANNEL_MANIFEST" | sed 's/      "name": "cbr0",/      "name": "cbr0",\n      "cniVersion": "0.3.1",/g' | KUBECONFIG="$LOCAL_KUBECONFIG" "$KUBECTL_BIN" apply -f -
 
   # make sure that no system component will be scheduled on Windows nodes
   local SELECTOR_PATCH="$(_ensure_file_present "$_MS_SDN_SELECTOR_PATCH_URL" "$_MS_SDN_SELECTOR_PATCH_CHECKSUM")"

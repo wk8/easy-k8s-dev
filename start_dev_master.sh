@@ -19,14 +19,12 @@ usage() {
   exit 1
 }
 
-# using a modified version for now until flannel catches up with versions 1.15/16
-# TODO: automatically detect the version and apply the right one...
-# _FLANNEL_VERSION='09ddc5006e18f15a0cb49314fa01729869d83527'
-# _FLANNEL_MANIFEST_DOWNLOAD_URL="https://raw.githubusercontent.com/coreos/flannel/$_FLANNEL_VERSION/Documentation/kube-flannel.yml"
-_FLANNEL_MANIFEST_DOWNLOAD_URL='https://raw.githubusercontent.com/wk8/easy-k8s-dev/master/kube-flannel.yml'
+# TODO: automatically detect the k8s version and apply the right flannel manifest...
+_FLANNEL_VERSION='ecb6db314e40094a43144b57f29b3ec2164d44c9'
+_FLANNEL_MANIFEST_DOWNLOAD_URL="https://raw.githubusercontent.com/coreos/flannel/$_FLANNEL_VERSION/Documentation/kube-flannel.yml"
 # to regen:
 # curl $_FLANNEL_MANIFEST_DOWNLOAD_URL | sha256sum
-_FLANNEL_MANIFEST_CHECKSUM='36a06eb89a2371fdc707bca5982ff247554c7e5353e09461b13d2bd288325ef3'
+_FLANNEL_MANIFEST_CHECKSUM='801ddcce40f67e37bf50d8e5de4eaafb609561502791dc683808f57958257b26'
 
 _MS_SDN_VERSION='7254feb355992bad5ef5981d7c381f2488fd72e8'
 _MS_SDN_SELECTOR_PATCH_URL="https://raw.githubusercontent.com/Microsoft/SDN/$_MS_SDN_VERSION/Kubernetes/flannel/l2bridge/manifests/node-selector-patch.yml"
